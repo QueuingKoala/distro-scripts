@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This script designed to run on ubuntu-based OSes out of
+# /etc/network/if-up.d/ .
+
+# Referenced files can be changed if needed
+RUN_FILE="/run/iptables.up"
+RUN6_FILE="/run/ip6tables.up"
+RULES="/etc/iptables/iptables.rules"
+RULES6="/etc/iptables/ip6tables.rules"
+
+if [ ! -f "$RUN_FILE" ] && [ -f "$RULES" ]; then
+
+	/sbin/iptables-restore < "$RULES" && \
+		touch "$RUN_FILE"
+fi
+
+if [ ! -f "$RUN6_FILE" ] && [ -f "$RULES6" ]; then
+	/sbin/ip6tables-restore < "$RULES6" && \
+		touch "$RUN6_FILE"
+fi
