@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# This script designed to run on ubuntu-based OSes out of
+# This script designed to run on Debian-based OSes out of
 # /etc/network/if-pre-up.d/ .
+# Note also that scripts here must be executable for ifup to run them. See
+# ifup(8) for deatils.
 
 # Referenced files can be changed if needed
 RUN_FILE="/run/iptables.up"
